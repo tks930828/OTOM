@@ -1,0 +1,17 @@
+<h1>アウトプット一覧</h1>
+
+<%= link_to '新規アウトプット作成', new_output_path, class: 'btn btn-primary' %>
+
+<div class="outputs-list">
+  <% @outputs.each do |output| %>
+    <div class="output-item">
+      <h3><%= output.book_name %></h3>
+      <p><%= output.output %></p>
+      <div class="actions">
+        <%= link_to '詳細', output_path(output), class: 'btn btn-info' %>
+        <%= link_to '編集', edit_output_path(output), class: 'btn btn-warning' %>
+        <%= link_to '削除', output_path(output), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  <% end %>
+</div> 

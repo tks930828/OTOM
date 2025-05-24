@@ -1,0 +1,14 @@
+<h1>アウトプット詳細</h1>
+
+<div class="output-detail">
+  <h2><%= @output.book_name %></h2>
+  <div class="output-content">
+    <%= @output.output %>
+  </div>
+</div>
+
+<div class="actions">
+  <%= link_to '編集', edit_output_path(@output), class: 'btn btn-warning' %>
+  <%= link_to '削除', output_path(@output), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+  <%= link_to '一覧に戻る', outputs_path, class: 'btn btn-secondary' %>
+</div> 
