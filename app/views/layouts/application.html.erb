@@ -11,6 +11,12 @@
   </head>
 
   <body>
+    <header>
+      <div><%= link_to root_path, class: "text-white nav-link" do %>Otom<% end %></div>
+      <div><%= link_to "Top", root_path, class: "text-white nav-link" %></div>
+      <div><%= link_to "新規アウトプット作成", new_output_path, class: "text-white nav-link" %></div>
+      <div><%= link_to "アウトプット一覧", outputs_path, class: "text-white nav-link" %></div>
+    </header>
     <%= yield %>
   </body>
 </html>

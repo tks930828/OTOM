@@ -5,7 +5,7 @@
 <div class="outputs-list">
   <% @outputs.each do |output| %>
     <div class="output-item">
-      <h3><%= output.book_name %></h3>
+      <h3><%= link_to output.book_name, output_path(output) %></h3>
       <p><%= output.output %></p>
       <div class="actions">
         <%= link_to '詳細', output_path(output), class: 'btn btn-info' %>
