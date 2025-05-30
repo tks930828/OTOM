@@ -1,14 +1,17 @@
 class OutputsController < ApplicationController
+  before_action :set_output, only: [:show, :edit, :update, :destroy]
+
   def index # アウトプット一覧を表示
     @outputs = Output.all
   end
 
-  def show # アウトプット詳細を表示
-    @output = Output.find(params[:id])
+  def show # アウトプットの詳細を表示
+    # @outputはbefore_actionのset_outputで設定されます
   end
 
-  def new # アウトプットを作成
+  def new # アウトプットおよびカテゴリーの新規作成
     @output = Output.new
+    @categories = Category.all
   end
 
   def create # アウトプットを作成
@@ -16,32 +19,36 @@ class OutputsController < ApplicationController
     if @output.save
       redirect_to @output, notice: 'アウトプットが正常に作成されました。'
     else
+      @categories = Category.all
       render :new
     end
   end
 
-  def edit # アウトプットを編集
-    @output = Output.find(params[:id])
+  def edit # カテゴリーを編集
+    @categories = Category.all
   end
 
   def update # アウトプットを更新
-    @output = Output.find(params[:id])
     if @output.update(output_params)
       redirect_to @output, notice: 'アウトプットが正常に更新されました。'
     else
+      @categories = Category.all
       render :edit
     end
   end
 
   def destroy # アウトプットを削除
-    @output = Output.find(params[:id])
     @output.destroy
     redirect_to outputs_path, notice: 'アウトプットが正常に削除されました。'
   end
 
   private
 
-  def output_params # アウトプットのパラメータを許可
-    params.require(:output).permit(:book_name, :output)
+  def set_output
+    @output = Output.find(params[:id])
+  end
+
+  def output_params # アウトプットおよびカテゴリーのパラメータを取得
+    params.require(:output).permit(:book_name, :output, :category_id)
   end
 end

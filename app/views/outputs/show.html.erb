@@ -1,14 +1,18 @@
-<h1>アウトプット詳細</h1>
+<div class="container mt-4">
+  <h1>アウトプット詳細</h1>
 
-<div class="output-detail">
-  <h2><%= @output.book_name %></h2>
-  <div class="output-content">
-    <%= @output.output %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= @output.book_name %></h5>
+      <p class="card-text"><%= @output.output %></p>
+      <p class="card-text">
+        <small class="text-muted">カテゴリー: <%= @output.category.name %></small>
+      </p>
+    </div>
   </div>
-</div>
 
-<div class="actions">
-  <%= link_to '編集', edit_output_path(@output), class: 'btn btn-warning' %>
-  <%= link_to '削除', output_path(@output), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
-  <%= link_to '一覧に戻る', outputs_path, class: 'btn btn-secondary' %>
+  <div class="mt-3">
+    <%= link_to '編集', edit_output_path(@output), class: 'btn btn-primary' %>
+    <%= link_to '一覧に戻る', outputs_path, class: 'btn btn-secondary' %>
+  </div>
 </div> 
