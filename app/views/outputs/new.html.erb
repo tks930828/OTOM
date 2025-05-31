@@ -11,7 +11,12 @@
     <%= f.text_area :output, class: 'form-control' %>
   </div>
 
-  <div class="actions">
+  <div class="field">
+    <%= f.label :category_id, 'カテゴリー' %>
+    <%= f.collection_select :category_id, @categories, :id, :name, { prompt: 'カテゴリーを選択してください' }, { class: 'form-control' } %>
+  </div>
+
+  <div class="actions mt-3">
     <%= f.submit '作成', class: 'btn btn-primary' %>
   </div>
 <% end %>
