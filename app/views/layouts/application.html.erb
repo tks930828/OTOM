@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Otom</title>
+    <title>otom</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,13 +11,16 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
     <header>
       <div><%= link_to root_path, class: "text-white nav-link" do %>Otom<% end %></div>
       <div><%= link_to "ホーム", root_path, class: "text-white nav-link" %></div>
       <div><%= link_to "新規アウトプット作成", new_output_path, class: "text-white nav-link" %></div>
       <div><%= link_to "アウトプット一覧", outputs_path, class: "text-white nav-link" %></div>
       <div><%= link_to "カテゴリー一覧",categories_path, class: "text-white nav-link" %></div>
+      <div><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-white nav-link" %></div>
     </header>
+  <% end %>
     <%= yield %>
   </body>
 </html>
