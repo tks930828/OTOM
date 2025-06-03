@@ -10,12 +10,12 @@
     </div>
   <% end %>
 
-  <div class="form-group"> # 本の名前を入力する
+  <div class="form-group"> 
     <%= f.label :book_name, '本の名前' %>
     <%= f.text_field :book_name, class: 'form-control' %>
   </div>
 
-  <div class="form-group"> # カテゴリーを選択する
+  <div class="form-group"> 
     <%= f.label :category_id, 'カテゴリー' %>
     <%= f.collection_select :category_id, @categories, :id, :name, 
         { include_blank: 'カテゴリーを選択してください' }, 

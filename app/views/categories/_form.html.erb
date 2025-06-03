@@ -1,5 +1,5 @@
 <%= form_with(model: category, local: true) do |f| %>
-  <% if category.errors.any? %> # エラーがある場合、エラーメッセージを表示
+  <% if category.errors.any? %> 
     <div class="alert alert-danger"> 
       <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
       <ul>

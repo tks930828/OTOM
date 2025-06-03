@@ -6,7 +6,8 @@ class OutputsController < ApplicationController
   end
 
   def show # アウトプットの詳細を表示
-    # @outputはbefore_actionのset_outputで設定
+    @comment = Comment.new
+    @comments = @output.comments.page(params[:page]).per(10)
   end
 
   def new # アウトプットおよびカテゴリーの新規作成
