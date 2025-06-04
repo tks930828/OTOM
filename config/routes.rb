@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :outputs do
     resources :comments, only: [:create, :destroy]
+    resource :favorites,only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

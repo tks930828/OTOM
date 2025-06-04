@@ -8,9 +8,18 @@
       <p class="card-text">
         <small class="text-muted">カテゴリー: <%= @output.category.name %></small>
       </p>
+      <% if @output.favorited_by?(current_user) %>
+        <%= link_to output_favorites_path(@output),  data: { turbo_method: :delete }, class: "favorite_btn" do %>
+          ♥<%= @output.favorites.count %> いいね
+        <% end %>
+      <% else %>
+        <%= link_to output_favorites_path(@output),  data: { turbo_method: :post }, class: "favorite_btn" do %>
+          ♡<%= @output.favorites.count %> いいね
+        <% end %>
+      <% end %>
+     </p>
     </div>
   </div>
-
   <div class="mt-3">
     <%= link_to '編集', edit_output_path(@output), class: 'btn btn-primary' %>
     <%= link_to '一覧に戻る', outputs_path, class: 'btn btn-secondary' %>
