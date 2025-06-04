@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :users,only: [:index, :show]
   resources :categories
   resources :outputs do
     resources :comments, only: [:create, :destroy]

@@ -17,6 +17,7 @@ class OutputsController < ApplicationController
 
   def create # アウトプットを作成
     @output = Output.new(output_params)
+    @output.user_id = current_user.id #投稿時にユーザーIDを表示
     if @output.save
       redirect_to @output, notice: 'アウトプットが正常に作成されました。'
     else
@@ -50,6 +51,6 @@ class OutputsController < ApplicationController
   end
 
   def output_params # アウトプットおよびカテゴリーのパラメータを取得
-    params.require(:output).permit(:book_name, :output, :category_id)
+    params.require(:output).permit(:user_id,book_name, :output, :category_id)
   end
 end
