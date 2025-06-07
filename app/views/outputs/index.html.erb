@@ -17,7 +17,11 @@
     <tbody>
       <% @outputs.each do |output| %>
         <tr>
-          <td><%= output.book_name %></td>
+          <td><%= link_to output_path(output) do %>
+            <%= image_tag output.image if output.image.attached? %>
+            <p class="caption mb-0"><%= output.book_name %></p>
+            <p class="caption"><%= "#{output.comments.count} コメント" %></p> 
+          <% end %></td>
           <td><%= output.category.name %></td>
           <td><%= truncate(output.output, length: 100) %></td>
           <td>

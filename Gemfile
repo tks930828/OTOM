@@ -49,6 +49,8 @@ gem "jquery-rails"
 gem "sassc-rails"
 gem "devise"
 gem "kaminari"
+gem "refile", require: "refile/rails", github: 'manfe/refile' 
+gem "refile-mini_magick"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

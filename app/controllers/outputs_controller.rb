@@ -1,13 +1,16 @@
 class OutputsController < ApplicationController
-  before_action :set_output, only: [:show, :edit, :update, :destroy]
+# before_actoin 処理の制限
+  before_action :authenticate_user!, except: [:index, :show] #ログインしているユーザー
+  before_action :set_output, only: [:show, :edit, :update, :destroy] 
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index # アウトプット一覧を表示
-    @outputs = Output.all
+    @outputs = Output.includes(:user, :category).page(params[:page]).per(12)
   end
 
   def show # アウトプットの詳細を表示
     @comment = Comment.new
-    @comments = @output.comments.page(params[:page]).per(10)
+    @comments = @output.comments.includes(:user).page(params[:page]).per(10)
   end
 
   def new # アウトプットおよびカテゴリーの新規作成
@@ -16,13 +19,12 @@ class OutputsController < ApplicationController
   end
 
   def create # アウトプットを作成
-    @output = Output.new(output_params)
-    @output.user_id = current_user.id #投稿時にユーザーIDを表示
+    @output = current_user.outputs.new(output_params)
     if @output.save
       redirect_to @output, notice: 'アウトプットが正常に作成されました。'
     else
       @categories = Category.all
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -35,13 +37,13 @@ class OutputsController < ApplicationController
       redirect_to @output, notice: 'アウトプットが正常に更新されました。'
     else
       @categories = Category.all
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy # アウトプットを削除
     @output.destroy
-    redirect_to outputs_path, notice: 'アウトプットが正常に削除されました。'
+    redirect_to outputs_path, notice: 'アウトプットを削除しました。'
   end
 
   private
@@ -50,7 +52,13 @@ class OutputsController < ApplicationController
     @output = Output.find(params[:id])
   end
 
+  def ensure_correct_user
+    unless @output.user == current_user
+      redirect_to outputs_path, alert: '権限がありません。'
+    end
+  end
+
   def output_params # アウトプットおよびカテゴリーのパラメータを取得
-    params.require(:output).permit(:user_id,book_name, :output, :category_id)
+    params.require(:output).permit(:book_name, :output, :category_id, :image)
   end
 end
