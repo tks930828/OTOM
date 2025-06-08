@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2 class="text-center mb-4">通知一覧</h2>
+      
+      <% if @notifications.exists? %>
+        <div class="notifications">
+          <% @notifications.each do |notification| %>
+            <div class="notification-item mb-3 p-3 border rounded <%= 'bg-light' if notification.checked %>">
+              <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
+                  <% case notification.action %>
+                  <% when 'follow' %>
+                    <%= link_to user_path(notification.visitor) do %>
+                      <%= image_tag notification.visitor.get_profile_image(50, 50), class: "rounded-circle" %>
+                      <%= notification.visitor.name %>さんがあなたをフォローしました
+                    <% end %>
+                  <% when 'favorite' %>
+                    <%= link_to output_path(notification.output) do %>
+                      <%= image_tag notification.visitor.get_profile_image(50, 50), class: "rounded-circle" %>
+                      <%= notification.visitor.name %>さんがあなたの投稿にいいねしました
+                    <% end %>
+                  <% when 'comment' %>
+                    <%= link_to output_path(notification.output) do %>
+                      <%= image_tag notification.visitor.get_profile_image(50, 50), class: "rounded-circle" %>
+                      <%= notification.visitor.name %>さんがあなたの投稿にコメントしました
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="text-muted small">
+                  <%= time_ago_in_words(notification.created_at) %>前
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="d-flex justify-content-center">
+          <%= paginate @notifications %>
+        </div>
+      <% else %>
+        <div class="text-center">
+          <p>通知はありません</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<style>
+.notification-item {
+  transition: background-color 0.3s;
+}
+
+.notification-item:hover {
+  background-color: #f8f9fa;
+}
+
+.notification-item img {
+  margin-right: 10px;
+}
+
+.notification-item a {
+  text-decoration: none;
+  color: #333;
+}
+
+.notification-item a:hover {
+  color: #007bff;
+}
+</style>

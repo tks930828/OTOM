@@ -1,42 +1,136 @@
 <div class="cover-user-show">
-  <div class="container d-flex flex-column align-items-center">
-    <div class="row mt-5">
-      <% if user_signed_in? && @user == current_user %>
-       <h1 class="font-weight-normal">マイページ</h1>
-      <% else %>
-       <h1 class="font-weight-normal"><%= @user.name %>さんのページ</h1>
-      <% end %>
-      <% if current_user != @user %>
-      <% if current_user.following?(@user) %>
-        <p class="d-flex align-self-end">
-          <%= link_to 'フォロー外す', user_relationships_path(@user.id),  data: { turbo_method: :delete }, class: "btn btn-danger" %>
-        </p>
-        <% else %>
-        <p class="d-flex align-self-end">
-          <%= link_to 'フォローする', user_relationships_path(@user.id),  data: { turbo_method: :post }, class:"btn btn-success" %>
-        </p>
-      <% end %>
-    <% end %>
-    <div class="d-flex">
-      <%= link_to follows_user_path(@user) do %>
-        <h6>フォロー<%= @following_users.count %></h6>
-      <% end %>  
-      <%= link_to followers_user_path(@user) do %>
-        <h6>フォロワー<%= @follower_users.count %></h6>
-      <% end %>
-    </div>
-    </div>
-    <div class="row mt-5 index-left w-100">
-      <% @outputs.each do |output| %>
-        <div class="one-post col-sm-3 mb-3">
-          <%= link_to output_path(output) do %>
-            <%= image_tag output.image, size: '200x133' if output.image.attached? %>
-            <p class="caption mb-0"><%= output.book_name %></p>
-            <p class="caption"><%= "#{output.comments.count} コメント" %></p>
+  <div class="container">
+    <div class="row">
+      <!-- 左サイドバー：ユーザー情報 -->
+      <div class="col-md-3">
+        <div class="user-profile-card">
+          <div class="text-center mb-4">
+            <% if @user.profile_image.attached? %>
+              <%= image_tag @user.get_profile_image(100, 100), class: "rounded-circle profile-image" %>
+            <% else %>
+              <%= image_tag 'no_image.jpg', size: '100x100', class: "rounded-circle profile-image" %>
+            <% end %>
+          </div>
+          
+          <h2 class="text-center mb-3">
+            <% if user_signed_in? && @user == current_user %>
+              マイページ
+            <% else %>
+              <%= @user.name %>さんのページ
+            <% end %>
+          </h2>
+
+          <div class="follow-stats text-center mb-4">
+            <div class="d-flex justify-content-around">
+              <%= link_to follows_user_path(@user), class: "follow-link" do %>
+                <div class="follow-count">
+                  <h4><%= @following_users.count %></h4>
+                  <p>フォロー</p>
+                </div>
+              <% end %>
+              <%= link_to followers_user_path(@user), class: "follow-link" do %>
+                <div class="follow-count">
+                  <h4><%= @follower_users.count %></h4>
+                  <p>フォロワー</p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <% if current_user != @user %>
+            <div class="text-center mb-4">
+              <% if current_user.following?(@user) %>
+                <%= link_to 'フォロー外す', user_relationships_path(@user.id), 
+                    data: { turbo_method: :delete }, 
+                    class: "btn btn-danger btn-block" %>
+              <% else %>
+                <%= link_to 'フォローする', user_relationships_path(@user.id), 
+                    data: { turbo_method: :post }, 
+                    class: "btn btn-success btn-block" %>
+              <% end %>
+            </div>
           <% end %>
         </div>
-      <% end %>
+      </div>
+
+      <!-- メインコンテンツ -->
+      <div class="col-md-9">
+        <% if user_signed_in? && @user == current_user %>
+          <!-- 通知一覧 -->
+          <div class="notifications-container mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h3 class="mb-0">通知一覧</h3>
+              <%= link_to notifications_path, class: "btn btn-info" do %>
+                <i class="fas fa-bell"></i> すべての通知を見る
+                <% if current_user.passive_notifications.where(checked: false).exists? %>
+                  <span class="badge badge-danger">
+                    <%= current_user.passive_notifications.where(checked: false).count %>
+                  </span>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="recent-notifications">
+              <% notifications = current_user.passive_notifications.limit(5) %>
+              <% if notifications.exists? %>
+                <% notifications.each do |notification| %>
+                  <div class="notification-item p-2 border-bottom">
+                    <% case notification.action %>
+                    <% when 'follow' %>
+                      <%= link_to user_path(notification.visitor) do %>
+                        <%= image_tag notification.visitor.get_profile_image(30, 30), class: "rounded-circle" %>
+                        <%= notification.visitor.name %>さんがあなたをフォローしました
+                      <% end %>
+                    <% when 'favorite' %>
+                      <%= link_to output_path(notification.output) do %>
+                        <%= image_tag notification.visitor.get_profile_image(30, 30), class: "rounded-circle" %>
+                        <%= notification.visitor.name %>さんがあなたの投稿にいいねしました
+                      <% end %>
+                    <% when 'comment' %>
+                      <%= link_to output_path(notification.output) do %>
+                        <%= image_tag notification.visitor.get_profile_image(30, 30), class: "rounded-circle" %>
+                        <%= notification.visitor.name %>さんがあなたの投稿にコメントしました
+                      <% end %>
+                    <% end %>
+                    <small class="text-muted d-block mt-1">
+                      <%= time_ago_in_words(notification.created_at) %>前
+                    </small>
+                  </div>
+                <% end %>
+              <% else %>
+                <p class="text-center text-muted">通知はありません</p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <!-- アウトプット一覧 -->
+        <div class="outputs-container">
+          <h3 class="mb-4">アウトプット一覧</h3>
+          <div class="row">
+            <% @outputs.each do |output| %>
+              <div class="col-md-4 mb-4">
+                <div class="output-card">
+                  <%= link_to output_path(output) do %>
+                    <div class="output-image">
+                      <%= image_tag output.image, class: "img-fluid" if output.image.attached? %>
+                    </div>
+                    <div class="output-info">
+                      <h5 class="book-name"><%= output.book_name %></h5>
+                      <p class="comment-count">
+                        <i class="fas fa-comment"></i> <%= output.comments.count %>
+                      </p>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="pagination-container">
+            <%= paginate @outputs %>
+          </div>
+        </div>
+      </div>
     </div>
-    <%= paginate @outputs %>
   </div>
 </div>
+

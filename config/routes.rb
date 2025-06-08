@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories
+  resources :notifications, only: :index
   resources :outputs do
     resources :comments, only: [:create, :destroy]
     resource :favorites,only: [:create, :destroy]

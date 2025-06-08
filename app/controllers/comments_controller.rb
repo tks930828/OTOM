@@ -1,10 +1,13 @@
 class CommentsController < ApplicationController
     def create #コメントの作成
         output = Output.find(params[:output_id])
-        comment = current_user.comments.new(comment_params)
-        comment.output_id = output.id
-        comment.save
-        redirect_to output_path(output)
+        @comment = current_user.comments.new(comment_params)
+        @comment.output_id = output.id
+        if @comment.save
+            redirect_to output_path(output)
+        else
+            redirect_to output_path(output)
+        end
     end
 
     def destroy #コメントの削除

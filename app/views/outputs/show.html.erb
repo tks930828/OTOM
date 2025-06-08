@@ -21,8 +21,10 @@
     </div>
   </div>
   <div class="mt-3">
+  <% if @output.user == current_user %>
     <%= link_to '編集', edit_output_path(@output), class: 'btn btn-primary' %>
     <%= link_to '削除', output_path(@output.id), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %><br>
+  <% end %>
     <%= link_to '一覧に戻る', outputs_path, class: 'btn btn-secondary' %>
   </div>
   <div class="comments ml-5 mt-5">
