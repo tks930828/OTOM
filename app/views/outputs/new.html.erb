@@ -19,6 +19,16 @@
   <div class="actions mt-3">
     <%= f.submit '作成', class: 'btn btn-primary' %>
   </div>
+  <% if @output.errors.any? %>
+    <div class="alert alert-danger mt-3">
+      <h4><%= @output.errors.count %>件のエラーが発生しました</h4>
+      <ul>
+        <% @output.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 <% end %>
 
 <%= link_to '戻る', outputs_path, class: 'btn btn-secondary' %> 

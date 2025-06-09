@@ -27,6 +27,17 @@
   <% end %>
     <%= link_to '一覧に戻る', outputs_path, class: 'btn btn-secondary' %>
   </div>
+  <% if @comment.errors.any? %>
+    <div class="alert alert-danger mt-3">
+      <h4><%= @comment.errors.count %>件のエラーが発生しました</h4>
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="container d-flex mt-5">
   <div class="comments ml-5 mt-5">
     <% if @output.present? %>
       <%= form_with(model: [@output, @comment], local: true) do |f| %>

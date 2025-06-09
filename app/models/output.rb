@@ -7,7 +7,7 @@ class Output < ApplicationRecord
   has_one_attached :image
   
   validates :book_name, presence: true, length: { maximum: 100 }
-  validates :output, presence: true
+  validates :output, presence: true, length: { maximum: 200 }
   validate :image_type
 
   def favorited_by?(user) # いいねがあるかどうかを確認
