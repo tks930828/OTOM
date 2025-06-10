@@ -6,7 +6,9 @@ class CommentsController < ApplicationController
         if @comment.save
             redirect_to output_path(output)
         else
-            redirect_to output_path(output)
+            @output = output
+            @comments = output.comments.includes(:user).page(params[:page]).per(10)
+            render 'outputs/show', status: :unprocessable_entity
         end
     end
 
