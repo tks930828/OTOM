@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
 
   def index #カテゴリー一覧の表示
     @categories = Category.all
+    @seed_categories = Category::SEED_CATEGORIES
   end
 
   def show #カテゴリーの詳細表示
@@ -10,32 +11,18 @@ class CategoriesController < ApplicationController
   end
 
   def new #カテゴリーの新規作成
-    @category = Category.new
   end
 
   def edit #カテゴリーの編集
   end
 
   def create #カテゴリーの作成
-    @category = Category.new(category_params)
-    if @category.save
-      redirect_to categories_path, notice: 'カテゴリーを作成しました'
-    else
-      render :new
-    end
   end
 
   def update #カテゴリーの更新
-    if @category.update(category_params)
-      redirect_to categories_path, notice: 'カテゴリーを更新しました'
-    else
-      render :edit
-    end
   end
 
   def destroy #カテゴリーの削除
-    @category.destroy
-    redirect_to categories_path, notice: 'カテゴリーを削除しました'
   end
 
   private
