@@ -1,152 +1,198 @@
+@import "variables";
+
 // ユーザー関連のスタイル
 .cover-user-show {
-  padding: 2rem 0;
   background-color: #f8f9fa;
   min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.user-header {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .user-profile-card {
   background: white;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+  position: sticky;
+  top: calc(#{$header-height} + 2rem);
 
-.profile-image {
-  border: 3px solid #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid $secondary-color;
+    padding: 3px;
+    transition: transform 0.3s ease;
+    margin-bottom: 1rem;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  h2 {
+    color: $primary-color;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba($secondary-color, 0.1);
+  }
 }
 
 .follow-stats {
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-  padding: 1rem 0;
-}
-
-.follow-link {
-  text-decoration: none;
-  color: #333;
-  
-  &:hover {
+  .follow-link {
     text-decoration: none;
-    color: #007bff;
+    color: inherit;
+    
+    &:hover {
+      color: #0d6efd;
+    }
   }
-}
 
-.follow-count {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  h4 {
-    margin: 0;
-    font-weight: bold;
-  }
-  
-  p {
-    margin: 0;
-    color: #666;
-  }
-}
-
-.notifications-container {
-  background: white;
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-
-  .btn-info {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    white-space: nowrap;
-
-    .badge {
-      margin-left: 0.5rem;
-      padding: 0.25rem 0.5rem;
-      font-size: 0.75rem;
+  .follow-count {
+    text-align: center;
+    
+    .count-number {
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .count-label {
+      font-size: 0.9rem;
+      color: #6c757d;
     }
   }
 }
 
-.notification-item {
-  transition: background-color 0.2s;
-  
-  &:hover {
-    background-color: #f8f9fa;
+.notifications-container {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    color: $primary-color;
+    font-size: 1.25rem;
+    font-weight: 600;
   }
-  
-  img {
-    margin-right: 10px;
-  }
-  
-  a {
-    text-decoration: none;
-    color: #333;
-    display: flex;
-    align-items: center;
+
+  .notification-item {
+    transition: background-color 0.2s;
     
     &:hover {
-      color: #007bff;
+      background-color: #f8f9fa;
+    }
+
+    a {
+      text-decoration: none;
+      color: $text-color;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      img {
+        border: 2px solid $secondary-color;
+      }
+    }
+
+    small {
+      font-size: 0.8rem;
     }
   }
 }
 
 .outputs-container {
-  background: white;
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.output-card {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
-  
-  &:hover {
-    transform: translateY(-5px);
+  .output-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
   }
-}
 
-.output-image {
-  height: 200px;
-  overflow: hidden;
-  
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .output-image {
+    height: 200px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
-}
 
-.output-info {
-  padding: 1rem;
-}
+  .no-image-placeholder {
+    height: 200px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+  }
 
-.book-name {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #333;
-}
-
-.comment-count {
-  margin: 0.5rem 0 0;
-  color: #666;
-  font-size: 0.9rem;
+  .output-info {
+    .book-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+  }
 }
 
 .pagination-container {
-  margin-top: 2rem;
-  text-align: center;
+  .pagination {
+    justify-content: center;
+  }
 }
 
-.btn-block {
-  width: 100%;
+// ボタンスタイルの拡張
+.btn {
+  &.btn-block {
+    width: 100%;
+    padding: 0.75rem;
+    font-weight: 500;
+  }
+
+  &.btn-success {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+      border-color: darken($secondary-color, 10%);
+    }
+  }
+
+  &.btn-danger {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+
+    &:hover {
+      background-color: darken(#e74c3c, 10%);
+      border-color: darken(#e74c3c, 10%);
+    }
+  }
 }
 
 .cover-user-index {
