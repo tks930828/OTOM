@@ -1,0 +1,15 @@
+ja:
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: 約1時間
+        other: 約%{count}時間
+      x_minutes:
+        one: 1分
+        other: 約%{count}分
+      less_than_x_minutes:
+        one: 1分未満
+        other: 約%{count}分未満
+      x_days:
+        one: 約1日
+        other: 約%{count}日

@@ -12,17 +12,17 @@
                   <% case notification.action %>
                   <% when 'follow' %>
                     <%= link_to user_path(notification.visitor) do %>
-                      <%= image_tag notification.visitor.get_profile_image(50, 50), class: "rounded-circle" %>
+                      <%= image_tag notification.visitor.get_profile_image(20, 20), class: "rounded-circle image-size" %>
                       <%= notification.visitor.name %>さんがあなたをフォローしました
                     <% end %>
                   <% when 'favorite' %>
                     <%= link_to output_path(notification.output) do %>
-                      <%= image_tag notification.visitor.get_profile_image(50, 50), class: "rounded-circle" %>
+                      <%= image_tag notification.visitor.get_profile_image(20, 20), class: "rounded-circle image-size" %>
                       <%= notification.visitor.name %>さんがあなたの投稿にいいねしました
                     <% end %>
                   <% when 'comment' %>
                     <%= link_to output_path(notification.output) do %>
-                      <%= image_tag notification.visitor.get_profile_image(50, 50), class: "rounded-circle" %>
+                      <%= image_tag notification.visitor.get_profile_image(20, 20), class: "rounded-circle image-size" %>
                       <%= notification.visitor.name %>さんがあなたの投稿にコメントしました
                     <% end %>
                   <% end %>
@@ -46,25 +46,3 @@
   </div>
 </div>
 
-<style>
-.notification-item {
-  transition: background-color 0.3s;
-}
-
-.notification-item:hover {
-  background-color: #f8f9fa;
-}
-
-.notification-item img {
-  margin-right: 10px;
-}
-
-.notification-item a {
-  text-decoration: none;
-  color: #333;
-}
-
-.notification-item a:hover {
-  color: #007bff;
-}
-</style>

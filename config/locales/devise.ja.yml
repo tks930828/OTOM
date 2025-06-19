@@ -1,0 +1,22 @@
+ja:
+  errors:
+    format: "%{message}"
+    messages:
+      not_saved:
+        one: "1つのエラーが発生しました。"
+        other: "%{count}つのエラーが発生しました。"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Eメールを入力してください。"
+            password:
+              blank: "パスワードを入力してください。"
+            name:
+              blank: "名前を入力してください。"
+    models:
+      user:
+        one: ユーザー
+        other: ユーザー

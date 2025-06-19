@@ -118,19 +118,12 @@
           <div class="row g-4">
             <% @outputs.each do |output| %>
               <div class="col-md-4">
-                <div class="output-card h-100">
-                  <%= link_to output_path(output), class: "text-decoration-none" do %>
-                    <div class="output-image">
-                      <% if output.image.attached? %>
-                        <%= image_tag output.image, class: "img-fluid rounded-top" %>
-                      <% else %>
-                        <div class="no-image-placeholder rounded-top">
-                          <i class="fas fa-book fa-3x"></i>
-                        </div>
-                      <% end %>
+                <div class="output-card h-80">
+                  <%= link_to output_path(output), class:  do %>
                     </div>
                     <div class="output-info p-3">
                       <h5 class="book-name text-dark mb-2"><%= output.book_name %></h5>
+                      <h6 class="category-name text-dark mb-2"><%= output.category.name %></h6>
                       <div class="output-meta">
                         <small class="text-muted">
                           <i class="far fa-calendar-alt"></i>

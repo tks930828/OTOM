@@ -85,6 +85,8 @@
     }
   }
 
+
+
  // メインコンテンツ
  main {
    margin-top: $header-height;
@@ -163,4 +165,14 @@
  // 他のスタイルシートのインポート
  @import "users";
  @import "homes";
- 
+
+ //フッタースタイル
+ .footer {
+  width: 100%;
+  height: 100px;
+  background-color: #000000;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
