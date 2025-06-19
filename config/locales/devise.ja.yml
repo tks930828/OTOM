@@ -5,6 +5,8 @@ ja:
       not_saved:
         one: "1つのエラーが発生しました。"
         other: "%{count}つのエラーが発生しました。"
+      required: "を入力してください"
+      blank: "コメントを入力してください"
   activerecord:
     errors:
       models:
@@ -16,6 +18,14 @@ ja:
               blank: "パスワードを入力してください。"
             name:
               blank: "名前を入力してください。"
+        output:
+          attributes:
+            category:
+              required: "カテゴリーを選択してください"
+            book_name:
+              blank: "書籍名を入力してください"
+            output:
+              blank: "アウトプット内容を入力してください"
     models:
       user:
         one: ユーザー
