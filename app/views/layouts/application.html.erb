@@ -9,23 +9,33 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   </head>
 
   <body>
     <% if user_signed_in? %>
-      <header>
-        <div>
+      <header class="navbar-header">
+        <div class="navbar-brand">
           <%= link_to root_path, class: "nav-link" do %>
             <i class="fas fa-book"></i> Otom
           <% end %>
         </div>
-        <div><%= link_to "ホーム", root_path, class: "nav-link" %></div>
-        <div><%= link_to "新規作成", new_output_path, class: "nav-link" %></div>
-        <div><%= link_to "アウトプット", outputs_path, class: "nav-link" %></div>
-        <div><%= link_to "カテゴリー", categories_path, class: "nav-link" %></div>
-        <div><%= link_to "マイページ", user_path(current_user.id), class: "nav-link" %></div>
-        <div><%= link_to "ユーザー", users_path, class: "nav-link" %></div>
-        <div><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %></div>
+        
+        <button class="hamburger-menu" id="hamburger-menu" aria-label="メニューを開く">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav class="navbar-nav" id="navbar-nav">
+          <div class="nav-item"><%= link_to "ホーム", root_path, class: "nav-link" %></div>
+          <div class="nav-item"><%= link_to "新規作成", new_output_path, class: "nav-link" %></div>
+          <div class="nav-item"><%= link_to "アウトプット", outputs_path, class: "nav-link" %></div>
+          <div class="nav-item"><%= link_to "カテゴリー", categories_path, class: "nav-link" %></div>
+          <div class="nav-item"><%= link_to "マイページ", user_path(current_user.id), class: "nav-link" %></div>
+          <div class="nav-item"><%= link_to "ユーザー", users_path, class: "nav-link" %></div>
+          <div class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %></div>
+        </nav>
       </header>
     <% end %>
     
