@@ -380,6 +380,26 @@
  }
 
  // レスポンシブデザイン
+ /* 769px 以上＝PC 用 */
+@media (min-width: 769px) {
+  .navbar-nav {
+    /* サイドバー設定をリセット */
+    position: static !important;   /* ← fixed を打ち消す */
+    right: auto;
+    top: 0;
+    width: auto;
+    height: $header-height;
+    padding: 0;
+
+    /* 横並びにする */
+    display: flex;
+    flex-direction: row;           /* ← これが無いと縦並び */
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+/* 768px 以下＝タブレット 用 */
  @media (max-width: 768px) {
    .navbar-header {
      padding: 0 1rem;
