@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @outputs = @user.outputs.page(params[:page]).per(10)
+    @outputs = @user.outputs.page(params[:page]).per(6)
     @following_users = @user.following
     @follower_users = @user.followers
   end

@@ -117,28 +117,25 @@
           </h3>
           <div class="row g-4">
             <% @outputs.each do |output| %>
-              <div class="col-md-4">
-                <div class="output-card h-80">
-                  <%= link_to output_path(output), class:  do %>
-                    </div>
-                    <div class="output-info p-3">
-                      <h5 class="book-name text-dark mb-2"><%= output.book_name %></h5>
-                      <h6 class="category-name text-dark mb-2"><%= output.category.name %></h6>
-                      <div class="output-meta">
-                        <small class="text-muted">
-                          <i class="far fa-calendar-alt"></i>
-                          <%= output.created_at.strftime("%Y/%m/%d") %>
-                        </small>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-          <div class="pagination-container mt-5">
+              <div class="col-md-4 d-flex">
+                <%= link_to output_path(output), class: "output-card card w-100 text-decoration-none text-dark shadow-sm" do %>
+                 <div class="output-info p-3">
+                   <h5 class="book-name mb-2"><%= output.book_name %></h5>
+                   <h6 class="category-name mb-2"><%= output.category.name %></h6>
+                   <div class="output-meta">
+                     <small class="text-muted">
+                     <i class="far fa-calendar-alt"></i>
+                     <%= output.created_at.strftime("%Y/%m/%d") %>
+                     </small>
+                   </div>
+                 </div>
+               <% end %>
+             </div>
+           <% end %>
+         </div>
+         <div class="pagination-container mt-5">
             <%= paginate @outputs %>
-          </div>
+         </div>
         </div>
       </div>
     </div>
