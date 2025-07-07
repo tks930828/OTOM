@@ -30,7 +30,7 @@
 
 # 利用方法
   #### ・ユーザー新規登録を行う、またはログインする
-![Image](https://github.com/user-attachments/assets/3c84309d-fd9b-4897-971a-9175c3ae4810)
+  <img src="https://github.com/user-attachments/assets/3c84309d-fd9b-4897-971a-9175c3ae4810" width="200">
   #### ・読書や学習した書籍名とアウトプットしたい内容をアウトプット
 （新規投稿画面のスクショ）
   #### ・他のユーザーのアウトプットを閲覧し、気に入ったアウトプットに「いいね」や「コメント」を残す
