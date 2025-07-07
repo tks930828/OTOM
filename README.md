@@ -39,7 +39,8 @@
   <img src="https://github.com/user-attachments/assets/24d3dda0-3a44-473f-b099-b3f16de859f5" width="300">
   
   #### カテゴリー一覧でカテゴリーごとのアウトプットをチェックする
-（投稿一覧画面のスクショ）
+  <img src="https://github.com/user-attachments/assets/d330d1cd-92fd-412d-b637-acc5a9414dd1" width="300">
+  
 
 # 機能一覧
  #### ・基本的なCRUD機能
