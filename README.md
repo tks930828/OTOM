@@ -33,7 +33,8 @@
   <img src="https://github.com/user-attachments/assets/3c84309d-fd9b-4897-971a-9175c3ae4810" width="200">
   
   #### ・読書や学習した書籍名とアウトプットしたい内容をアウトプット
-（新規投稿画面のスクショ）
+  <img src="https://github.com/user-attachments/assets/5b1ef398-b685-4037-ae75-1998f7df75b0" width="200">
+  
   #### ・他のユーザーのアウトプットを閲覧し、気に入ったアウトプットに「いいね」や「コメント」を残す
 （投稿詳細画面のスクショ）
   #### カテゴリー一覧でカテゴリーごとのアウトプットをチェックする
