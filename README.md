@@ -33,13 +33,13 @@
   <img src="https://github.com/user-attachments/assets/3c84309d-fd9b-4897-971a-9175c3ae4810" width="300">
   
   #### ・読書や学習した書籍名とアウトプットしたい内容をアウトプット
-  <img src="https://github.com/user-attachments/assets/5b1ef398-b685-4037-ae75-1998f7df75b0" width="300">
+  <img src="https://github.com/user-attachments/assets/79c6c188-3828-4d54-a31c-537e56c33e55" width="300">
   
   #### ・他のユーザーのアウトプットを閲覧し、気に入ったアウトプットに「いいね」や「コメント」を残す
-  <img src="https://github.com/user-attachments/assets/24d3dda0-3a44-473f-b099-b3f16de859f5" width="300">
+  <img src="https://github.com/user-attachments/assets/a8666d62-1552-49cf-9f90-703101d975fc" width="300">
   
   #### カテゴリー一覧でカテゴリーごとのアウトプットをチェックする
-  <img src="https://github.com/user-attachments/assets/d330d1cd-92fd-412d-b637-acc5a9414dd1" width="300">
+  <img src="https://github.com/user-attachments/assets/088d88fe-eb5e-4c34-90b1-5017fb7817ae" width="300">
   
 
 # 機能一覧
