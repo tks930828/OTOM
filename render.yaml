@@ -1,6 +1,6 @@
 databases:
   - name: OTOM
-    databaseName: otom_db
+    databaseName: otom_db_4hgc
     user: tks930828
     region: Oregon
 
